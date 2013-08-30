@@ -156,6 +156,7 @@ public class RedirectionTest {
 
                 System.out.println(redirectedTo + " === from === " + redirectFromThisURL);
 
+                driver.quit();  // otherwise you have a whole set of phantomjs.exe lying about
             }
 
             current++;
