@@ -1,1 +1,7 @@
 target/
+
+.idea
+/tools
+
+/phantomjsdriver.log
+/redirection_ghostdriver.iml
