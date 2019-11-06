@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -16,9 +18,13 @@ import static org.junit.Assert.assertThat;
 
 public class RedirectionTest {
 
-    // Change this to the physical location of your phantomjs.exe
+    // Change the code so that PHANTOMJS_EXE points to the physical location of your phantomjs.exe
+    // public static final File PHANTOMJS_EXE =
+    //        new File(System.getProperty("user.dir"), "tools/phantomjs-1.9.1-windows/phantomjs.exe");
+
+    // I last ran this on mac so my settings were
     public static final File PHANTOMJS_EXE =
-            new File(System.getProperty("user.dir"), "tools/phantomjs-1.9.1-windows/phantomjs.exe");
+            new File(System.getProperty("user.dir"), "tools/phantomjs-2.1.1-macosx/bin/phantomjs");
 
     UserAgentStrings toCheck = new UserAgentStrings();
 
@@ -114,16 +120,16 @@ public class RedirectionTest {
         // visit these urls and check that they redirect
         List<String> redirectFrom = new ArrayList<String>();
         // TODO: CHANGE THESE TO YOUR SITE URLS
-        redirectFrom.add("http://www.bbc.co.uk");
+        redirectFrom.add("https://youtube.com");
         //redirectFrom.add("http://www.tfl.gov.uk");
 
         // should I clear cookies after every redirect attempt?
         boolean clearCookies = true;
 
         // consider it a redirect if the URL starts with ...
-        // e.g. String redirectToStartsWith = "http://mobile.";
-        // String redirectToStartsWith = "http://mob.";
-        String redirectToStartsWith = "http://m.";
+        // e.g. String redirectToStartsWith = "https://mobile.";
+        // String redirectToStartsWith = "https://mob.";
+        String redirectToStartsWith = "https://m.";
 
         for(UserAgentString userAgent : toCheck.userAgents.values()){
 
@@ -136,9 +142,11 @@ public class RedirectionTest {
             caps.setJavascriptEnabled(true);
             caps.setCapability("phantomjs.binary.path", PHANTOMJS_EXE.getAbsolutePath());
             caps.setCapability("phantomjs.page.settings.userAgent", agent);
+            WebDriver driver = new PhantomJSDriver(caps);
 
             boolean exceptionRaised = false;
-            PhantomJSDriver driver = new PhantomJSDriver(caps);
+
+
 
             for(String redirectFromThisURL : redirectFrom){
 
