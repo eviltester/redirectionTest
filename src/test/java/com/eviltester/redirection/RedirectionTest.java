@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -19,12 +17,12 @@ import static org.junit.Assert.assertThat;
 public class RedirectionTest {
 
     // Change the code so that PHANTOMJS_EXE points to the physical location of your phantomjs.exe
-    // public static final File PHANTOMJS_EXE =
-    //        new File(System.getProperty("user.dir"), "tools/phantomjs-1.9.1-windows/phantomjs.exe");
+     public static final File PHANTOMJS_EXE =
+            new File(System.getProperty("user.dir"), "tools/phantomjs-1.9.1-windows/phantomjs.exe");
 
     // I last ran this on mac so my settings were
-    public static final File PHANTOMJS_EXE =
-            new File(System.getProperty("user.dir"), "tools/phantomjs-2.1.1-macosx/bin/phantomjs");
+//    public static final File PHANTOMJS_EXE =
+//            new File(System.getProperty("user.dir"), "tools/phantomjs-2.1.1-macosx/bin/phantomjs");
 
     UserAgentStrings toCheck = new UserAgentStrings();
 
